@@ -8,9 +8,10 @@ import org.springframework.stereotype.Repository;
 import Hospital.models.Patient;
 
 @Repository
-public interface PatientRepo extends JpaRepository<Patient, Integer>{
-	
+public interface PatientRepo extends JpaRepository<Patient, Integer> {
+
 	List<Patient> findAllByfirstName(String name);
+
 	List<Patient> findAllBylastName(String name);
-	
+
 }
