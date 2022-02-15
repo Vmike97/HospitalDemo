@@ -1,4 +1,4 @@
-package Hospital.controller;
+package Hospital.controllers;
 
 import java.util.List;
 
@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import Hospital.dao.PatientRepo;
 import Hospital.models.Patient;
+import Hospital.services.PatientService;
 
 @Controller
 public class PatientController {
 
 	@Autowired
 	PatientRepo patientRepo;
+	
+	@Autowired
+	PatientService patientServ;
 
 	@GetMapping("")
 	@ResponseBody
@@ -49,13 +53,25 @@ public class PatientController {
 		return patientRepo.findAllBylastName(name);
 	}
 
+/*
 	// Find patient based on patient id
 	@GetMapping("/patient/id/{id}")
 	@ResponseBody
-	public Patient getPatientByLastName(@PathVariable int id) {
+	public Patient getPatientByid(@PathVariable int id) {
 
 		return patientRepo.findById(id).orElse(new Patient());
 	}
+*/	
+	//Testing PatientService with exceptionHandlers. Uncomment above for original getPatientByid code.
+	
+	@GetMapping("/patient/id/{id}")
+	@ResponseBody
+	public Patient getPatientById(@PathVariable int id){
+		
+		return patientServ.getPatientByID(id);
+	}
+	
+	
 
 	// Add new patient
 	@PutMapping("/addPatient")
