@@ -1,6 +1,8 @@
 package Hospital.controllers;
 
 import java.util.List;
+import java.util.function.Supplier;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import Hospital.ErrorHandling.IdNotFoundException;
 import Hospital.dao.MedicineRepo;
 import Hospital.models.Medicine;
 
@@ -37,7 +40,7 @@ public class MedicineController {
 	@GetMapping("/medicine/id/{id}")
 	@ResponseBody
 	public Medicine getMedicineById(@PathVariable int id) {
-		return medRepo.findById(id).orElse(new Medicine());
+		return medRepo.findById(id).get();
 	}
 
 	// List of medicine by desired effect

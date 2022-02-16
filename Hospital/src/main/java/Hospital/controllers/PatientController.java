@@ -30,40 +30,30 @@ public class PatientController {
 		return "Hello";
 	}
 
-	// List all patients
+	// List all patients.
 	@GetMapping("patients")
 	@ResponseBody
 	public List<Patient> getAllPatients() {
 		return patientRepo.findAll();
 	}
 
-	// list patients based on first name
+	// List patients based on desired first name.
 	@GetMapping("/patient/firstname/{name}")
 	@ResponseBody
 	public List<Patient> getPatientByFirstName(@PathVariable String name) {
 
-		return patientRepo.findAllByfirstName(name);
+		return patientServ.getPatientsByFirstName(name);
 	}
 
-	// List patients based on last name
+	// List patients based desired on last name.
 	@GetMapping("/patient/lastname/{name}")
 	@ResponseBody
 	public List<Patient> getPatientByLastName(@PathVariable String name) {
 
-		return patientRepo.findAllBylastName(name);
+		return patientServ.getPatientsByLastName(name);
 	}
 
-/*
-	// Find patient based on patient id
-	@GetMapping("/patient/id/{id}")
-	@ResponseBody
-	public Patient getPatientByid(@PathVariable int id) {
-
-		return patientRepo.findById(id).orElse(new Patient());
-	}
-*/	
-	//Testing PatientService with exceptionHandlers. Uncomment above for original getPatientByid code.
-	
+	//
 	@GetMapping("/patient/id/{id}")
 	@ResponseBody
 	public Patient getPatientById(@PathVariable int id){
@@ -71,22 +61,18 @@ public class PatientController {
 		return patientServ.getPatientByID(id);
 	}
 	
-	
-
-	// Add new patient
+	/* Since there are no unique variables to distinguish a person identity (i.e. SIN) in this case there
+	 * shall be no 2 people of the same first and last name allowed in the system.
+	*/
+	// Add new patient.
 	@PutMapping("/addPatient")
 	@ResponseBody
 	public Patient addNewPatient(@RequestBody Patient p) {
-		if (!patientRepo.existsById(p.getpId())) {
-			patientRepo.save(p);
-			return p;
-		} else {
-			return patientRepo.findById(p.getpId()).orElse(null);
-		}
-
+		patientServ.savePatient(p);
+		return p;
 	}
 
-	// Edit Patient
+	// Edit Patient.
 	@PutMapping("/editPatient")
 	@ResponseBody
 	public Patient editPatient(@RequestBody Patient p) {
@@ -94,7 +80,7 @@ public class PatientController {
 		return p;
 	}
 
-	// Delete patient
+	// Delete patient.
 	@DeleteMapping("/deletePatient/id/{id}")
 	@ResponseBody
 	public String deletePatient(@PathVariable int id) {
