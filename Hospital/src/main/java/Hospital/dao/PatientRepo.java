@@ -20,7 +20,7 @@ public interface PatientRepo extends JpaRepository<Patient, Integer> {
 	
 	Boolean existsBylastName(String name);
 	
-	@Query(value= "SELECT first_name, last_name FROM PATIENT WHERE first_name = :firstName AND last_name = :lastName", nativeQuery= true)
-	Patient findDuplicateName(@Param("firstName") String firstname, @Param("lastName") String lastname);
+	@Query(value= "SELECT * FROM PATIENT WHERE first_name = :firstname AND last_name = :lastname", nativeQuery= true)
+	Patient findDuplicateName(@Param("firstname") String firstname, @Param("lastname") String lastname);
 
 }

@@ -20,7 +20,7 @@ public class PatientController {
 
 	@Autowired
 	PatientRepo patientRepo;
-	
+
 	@Autowired
 	PatientService patientServ;
 
@@ -56,19 +56,21 @@ public class PatientController {
 	//
 	@GetMapping("/patient/id/{id}")
 	@ResponseBody
-	public Patient getPatientById(@PathVariable int id){
-		
+	public Patient getPatientById(@PathVariable int id) {
+
 		return patientServ.getPatientByID(id);
 	}
-	
-	/* Since there are no unique variables to distinguish a person identity (i.e. SIN) in this case there
-	 * shall be no 2 people of the same first and last name allowed in the system.
-	*/
+
+	/*
+	 * Since there are no unique variables to distinguish a person identity
+	 * (i.e. SIN) in this case there shall be no 2 people of the same first and
+	 * last name allowed in the system.
+	 */
 	// Add new patient.
 	@PutMapping("/addPatient")
 	@ResponseBody
 	public Patient addNewPatient(@RequestBody Patient p) {
-		patientServ.savePatient(p);
+		patientServ.addNewPatient(p);
 		return p;
 	}
 
