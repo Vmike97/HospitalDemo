@@ -15,12 +15,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import Hospital.ErrorHandling.IdNotFoundException;
 import Hospital.dao.MedicineRepo;
 import Hospital.models.Medicine;
+import Hospital.services.MedicineService;
 
 @Controller
 public class MedicineController {
 
 	@Autowired
 	MedicineRepo medRepo;
+	
+	@Autowired
+	MedicineService medServ;
 
 	// List all medicines
 	@GetMapping("/medicine")
@@ -54,12 +58,8 @@ public class MedicineController {
 	@PutMapping("/addMedicine")
 	@ResponseBody
 	public Medicine addNewMedicine(@RequestBody Medicine m) {
-		if (!medRepo.existsByName(m.getName())) {
-			medRepo.save(m);
-			return m;
-		} else {
-			return medRepo.findByName(m.getName());
-		}
+		medServ.addNewMedicine(m);
+		return m;
 	}
 
 	// Delete medicine by name

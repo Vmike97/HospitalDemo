@@ -64,14 +64,16 @@ public class PatientController {
 	/*
 	 * Since there are no unique variables to distinguish a person identity
 	 * (i.e. SIN) in this case there shall be no 2 people of the same first and
-	 * last name allowed in the system.
+	 * last name allowed in the system. Although this can be allowed with unique pID. However
+	 * since we manual add a patient Id the user may mistakenly input a patient twice in the system.
+	 * Must have a unique paitentID.
+	 * Auto capitalizes first letters of first and last name regardless of input.
 	 */
 	// Add new patient.
 	@PutMapping("/addPatient")
 	@ResponseBody
 	public Patient addNewPatient(@RequestBody Patient p) {
-		patientServ.addNewPatient(p);
-		return p;
+		return patientServ.addNewPatient(p);
 	}
 
 	// Edit Patient.

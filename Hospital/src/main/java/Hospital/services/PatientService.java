@@ -19,19 +19,21 @@ public class PatientService {
 	// List patient(s) by first name, throws exception if patient(s) do not
 	// exist.
 	public List<Patient> getPatientsByFirstName(String name) {
-		if (!patRepo.existsByfirstName(name)) {
+		String capitalized = name.substring(0, 1).toUpperCase() + name.substring(1);
+		if (!patRepo.existsByfirstName(capitalized)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No such first name exists");
 		}
-		return patRepo.findAllByfirstName(name);
+		return patRepo.findAllByfirstName(capitalized);
 	}
 
 	// List patient(s) by last name, throws exception if patient(s) do not
 	// exist.
 	public List<Patient> getPatientsByLastName(String name) {
-		if (!patRepo.existsBylastName(name)) {
+		String capitalized = name.substring(0, 1).toUpperCase() + name.substring(1);
+		if (!patRepo.existsBylastName(capitalized)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No such last name exists.");
 		}
-		return patRepo.findAllBylastName(name);
+		return patRepo.findAllBylastName(capitalized);
 	}
 
 	// Show patient by id, throws exception if id does not exist.
@@ -43,15 +45,25 @@ public class PatientService {
 		}
 	}
 
-	// Add new patient. If both first and last name exist as one person throw
-	// exception.
+	/*
+	 *  Add new patient. If both first and last name exist as one person throw exception.
+	 *  Auto capitalize first and last name first letters.
+	 */
+	
 	public Patient addNewPatient(Patient p) {
-		if (patRepo.findDuplicateName(p.getFirstname(), p.getLastname()) == null) {
-			patRepo.save(p);
-			return p;
-
+		String capFname = p.getFirstname().substring(0, 1).toUpperCase() + p.getFirstname().substring(1);
+		String capLname = p.getLastname().substring(0, 1).toUpperCase() + p.getLastname().substring(1);
+		if (patRepo.findDuplicateName(capFname, capLname) != null || patRepo.existsById(p.getpId())) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Person with name or Id already exists.");	
 		} else {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Person already exists.");
+			// Use constructor overloading for class Patient instead of writing all these sets.
+			Patient pAdjust = new Patient();
+			pAdjust.setAge(p.getAge());
+			pAdjust.setFirstname(capFname);
+			pAdjust.setLastname(capLname);
+			pAdjust.setpId(p.getpId());
+			patRepo.save(pAdjust);
+			return pAdjust;
 		}
 	}
 
