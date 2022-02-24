@@ -62,34 +62,36 @@ public class PatientController {
 	}
 
 	/*
-	 * Since there are no unique variables to distinguish a person identity
-	 * (i.e. SIN) in this case there shall be no 2 people of the same first and
-	 * last name allowed in the system. Although this can be allowed with unique pID. However
-	 * since we manual add a patient Id the user may mistakenly input a patient twice in the system.
-	 * Must have a unique paitentID.
-	 * Auto capitalizes first letters of first and last name regardless of input.
+	 * Add new patient. Since there are no unique variables to distinguish a
+	 * person identity (i.e. SIN) in this case there shall be no 2 people of the
+	 * same first and last name allowed in the system. Although this can be
+	 * allowed with unique pID. However since we manual add a patient Id the
+	 * user may mistakenly input a patient twice in the system. Must have a
+	 * unique paitentID. Auto capitalizes first letters of first and last name
+	 * regardless of input.
 	 */
-	// Add new patient.
+
 	@PutMapping("/addPatient")
 	@ResponseBody
 	public Patient addNewPatient(@RequestBody Patient p) {
 		return patientServ.addNewPatient(p);
 	}
 
-	// Edit Patient.
+	/*
+	 * Edit patient. Patient ID must exist in the system.
+	 */
+
 	@PutMapping("/editPatient")
 	@ResponseBody
 	public Patient editPatient(@RequestBody Patient p) {
-		patientRepo.save(p);
-		return p;
+		return patientServ.editPatient(p);
 	}
 
 	// Delete patient.
 	@DeleteMapping("/deletePatient/id/{id}")
 	@ResponseBody
 	public String deletePatient(@PathVariable int id) {
-		patientRepo.deleteById(id);
-		return "Patient deleted";
+		return patientServ.deletePatientFromId(id);
 	}
 
 }

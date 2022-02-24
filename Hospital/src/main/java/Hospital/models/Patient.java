@@ -11,6 +11,16 @@ public class Patient {
 	private String firstName;
 	private String lastName;
 	private int age;
+	
+	public Patient(){
+	}
+	
+	public Patient (int id, String fName, String lName, int age){
+		this.patientId = id;
+		this.firstName = fName;
+		this.lastName = lName;
+		this.age = age;
+	}
 
 	public String getFirstname() {
 		return firstName;
