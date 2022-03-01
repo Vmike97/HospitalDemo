@@ -37,29 +37,28 @@ public class MedicineController {
 	@GetMapping("/medicine/name/{name}")
 	@ResponseBody
 	public Medicine getMedicineByName(@PathVariable String name) {
-		return medRepo.findByName(name);
+		return medServ.findByMedName(name);
 	}
 
 	// Get medicine from id
 	@GetMapping("/medicine/id/{id}")
 	@ResponseBody
 	public Medicine getMedicineById(@PathVariable int id) {
-		return medRepo.findById(id).get();
+		return medServ.findByMedId(id);
 	}
 
 	// List of medicine by desired effect
 	@GetMapping("/medicine/effect/{effect}")
 	@ResponseBody
 	public List<Medicine> getMedicineWithEffect(@PathVariable String effect) {
-		return medRepo.findAllByEffect(effect);
+		return medServ.findMedsByEffect(effect);
 	}
 
 	// Add new medicine
 	@PutMapping("/addMedicine")
 	@ResponseBody
 	public Medicine addNewMedicine(@RequestBody Medicine m) {
-		medServ.addNewMedicine(m);
-		return m;
+		return medServ.addNewMedicine(m);
 	}
 
 	// Delete medicine by name

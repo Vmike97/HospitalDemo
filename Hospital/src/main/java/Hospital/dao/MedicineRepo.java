@@ -17,4 +17,6 @@ public interface MedicineRepo extends JpaRepository<Medicine, Integer> {
 	Boolean existsByName(String name);
 	
 	Medicine deleteByName(String name);
+
+	Boolean existsByEffect(String effect);
 }
