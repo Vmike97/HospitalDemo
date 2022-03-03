@@ -14,6 +14,21 @@ public class Medicine {
 	private String name;
 	private String effect;
 	private int inStock;
+	
+	public Medicine(){
+	}
+
+	public Medicine(int medId, String name, String effect) {
+		this.medId = medId;
+		this.name = name;
+		this.effect = effect;
+		this.inStock = 0;
+	}
+	
+	public Medicine(int medId, String name, String effect, int inStock) {
+		this(medId, name, effect);
+		this.inStock = inStock;
+	}
 
 	public int getMedId() {
 		return medId;

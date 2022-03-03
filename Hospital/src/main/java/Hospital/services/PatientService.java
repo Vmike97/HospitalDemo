@@ -16,14 +16,10 @@ public class PatientService {
 	@Autowired
 	PatientRepo patRepo;
 	
-	public String capitalize(String string){
-		String capitalized = string.substring(0, 1).toUpperCase() + string.substring(1);
-		return capitalized;
-	}
 
 	// List patient(s) by first name, throws exception if patient(s) do not exist.
 	public List<Patient> getPatientsByFirstName(String name) {
-		String s = capitalize(name);
+		String s = Formatting.capitalize(name);
 		if (!patRepo.existsByfirstName(s)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No such first name exists");
 		}
@@ -32,7 +28,7 @@ public class PatientService {
 
 	// List patient(s) by last name, throws exception if patient(s) do not exist.
 	public List<Patient> getPatientsByLastName(String name) {
-		String s = capitalize(name);
+		String s = Formatting.capitalize(name);
 		if (!patRepo.existsBylastName(s)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No such last name exists.");
 		}
@@ -54,8 +50,8 @@ public class PatientService {
 	 */
 
 	public Patient addNewPatient(Patient p) {
-		String capFname = capitalize(p.getFirstname());
-		String capLname = capitalize(p.getLastname());
+		String capFname = Formatting.capitalize(p.getFirstname());
+		String capLname = Formatting.capitalize(p.getLastname());
 		if (patRepo.findDuplicateName(capFname, capLname) != null || patRepo.existsById(p.getpId())) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Person with name or Id already exists.");
 		} else {
@@ -75,12 +71,9 @@ public class PatientService {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Id does not exist");
 		} else {
 			Patient p = patRepo.findById(id).get();
-			String fName = p.getFirstname();
-			String lName = p.getLastname();
-			String idToString = String.valueOf(p.getpId());
 			patRepo.deleteById(id);
-			return "Patient ID: " + idToString + "\n" + "Patient Name: " + fName + ", " + lName + "\n"
-					+ "Sucessfully deleted.";
+			return "Patient ID: " + p.getpId() + "\n" + "Patient Name: " + p.getFirstname() + ", " 
+					+ p.getLastname() + "\n" + "Sucessfully deleted.";
 		}
 	}
 

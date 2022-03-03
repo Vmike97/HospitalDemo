@@ -1,8 +1,6 @@
 package Hospital.controllers;
 
 import java.util.List;
-import java.util.function.Supplier;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import Hospital.ErrorHandling.IdNotFoundException;
 import Hospital.dao.MedicineRepo;
 import Hospital.models.Medicine;
 import Hospital.services.MedicineService;
@@ -65,8 +62,7 @@ public class MedicineController {
 	@DeleteMapping("/deleteMedicine/{name}")
 	@ResponseBody
 	public String deleteMedicine(@PathVariable String name) {
-		medRepo.deleteById(medRepo.findByName(name).getMedId());
-		return "Medicine deleted";
+		return medServ.deleteMedFromName(name);
 	}
 
 }

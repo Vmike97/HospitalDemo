@@ -14,7 +14,7 @@ insert into medicine values (default, 'Painkiller', 4, 'Ibuprofen');
 insert into medicine values (default, 'Removes lgiht bleed', 15, 'Aseptic Bandage');
 insert into medicine values (default, 'Surgery', 2, 'CMS Kit');
 insert into medicine values (default, 'Removes heavy bleed', 12, 'Esmarch');
-insert into medicine values (default, 'Increases weight limit (+50%)', 1, 'M.U.L.E. stimulant injector');
+insert into medicine values (default, 'Increases weight limit (+50%)', 1, 'M.U.L.E. Stimulant Injector');
 
 insert into prescription  values (default, 2, 1892);
 insert into prescription (med_Id, p_ID) values (4, 1337);

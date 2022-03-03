@@ -17,10 +17,11 @@ public class MedicineService {
 	MedicineRepo medRepo;
 	
 	public Medicine findByMedName(String name){
-		if(!medRepo.existsByName(name)){
+		String s = Formatting.capitalizeWithSpaces(name);
+		if(!medRepo.existsByName(s)){
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Medicine name does not exist.");
 		}else{
-			return medRepo.findByName(name);
+			return medRepo.findByName(s);
 		}
 	}
 	
@@ -32,7 +33,8 @@ public class MedicineService {
 		}
 	}
 	
-	public List<Medicine> findMedsByEffect(String effect){
+	public List<Medicine> findMedsByEffect(String effectName){
+		String effect = Formatting.capitalize(effectName);
 		if(medRepo.existsByEffect(effect)){
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Medicine effect does not exist.");
 		}else{
@@ -44,13 +46,28 @@ public class MedicineService {
 	 * The medicine Id is auto generated but customs Id's are allowed. 
 	 */
 	public Medicine addNewMedicine(Medicine m){
-		if(medRepo.existsByName(m.getName()) || medRepo.existsById(m.getMedId())){
+		String name = Formatting.capitalizeWithSpaces(m.getName());
+		if(medRepo.existsByName(name) || medRepo.existsById(m.getMedId())){
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Medicine or Id already exists."); 
 		}else{
-			medRepo.save(m);
-			return m;
+			Medicine med = new Medicine(m.getMedId(), name, m.getEffect(), m.getInStock());
+			medRepo.save(med);
+			return med;
 		}
 		
+	}
+	
+	public String deleteMedFromName(String medName){
+		String med = Formatting.capitalize(medName);
+		if(!medRepo.existsByName(med)){
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Medicine name does not exist.");
+		}else{
+			Medicine m = medRepo.findByName(med);
+			medRepo.delete(medRepo.findByName(med));
+			return "Medicine ID: " + m.getMedId() + "\n"
+					+ "Medicine: " + m.getName() + "\n"
+					+ "Successfully deleted.";
+		}
 	}
 	
 }
