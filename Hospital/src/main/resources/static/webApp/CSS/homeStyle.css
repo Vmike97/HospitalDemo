@@ -1,0 +1,109 @@
+@CHARSET "ISO-8859-1";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif; 
+}
+
+h1, h2 {
+   
+}
+
+h1 {
+    color: rgba(0, 141, 7, 0.904);
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: rgb(173, 45, 45);
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+ p {
+     /* font-size: 18px;
+     font-family: Gill Sans, 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;  
+     
+     This <p> is replaced by the class .main-text below*/
+     
+ }
+
+ .main-text {
+     font-size: 18px;
+     font-family: Gill Sans, 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif; 
+     text-align: justify;
+     margin-bottom: 20px;
+ }
+
+ .author-text {
+     font-size: 22px;
+     float: left;
+     margin-top: 35px;
+     margin-left: 10px;
+ }
+
+ .container {
+     width: 1540px;
+     /* margin-left: auto;
+     margin-right: auto;
+     margin-top: 20px; */
+     margin: 20px auto 0 auto; /* margin: top, right, bottom, left */ 
+ }
+
+ .blog-post {
+     /* background-color: cornflowerblue; */
+     width: 75%;
+     float: left;
+     padding-right: 20px;
+     position: relative;
+ }
+
+ .other-posts {
+     /* background-color: coral; */
+     width: 25%;
+     float: left;
+ }
+
+ .author-box {
+     padding-top: 20px;
+     /* background-color: aquamarine; */
+     border-top: 1px solid rgb(66, 66, 66);
+     width: 100%;
+     float: left;
+ }
+
+ .other {
+     margin-bottom: 40px;
+ }
+
+ .author-box img {
+     height: 100px;
+     width: 125px;
+     border-radius: 20%;
+     float: left;
+ }
+ .blog-post img {
+    /*  display: block;
+     margin-left: auto;
+     margin-right: auto; 
+     padding-bottom: 0px; */
+     height: 150px;
+     width: auto; 
+
+ }
+
+ .date {
+     position: absolute;
+     top: 10px;
+     right: 30px;
+
+ }

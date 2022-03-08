@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<meta charset="ISO-8859-1">
+<head>
+
+<title>My first blog post 123</title>
+<link rel="stylesheet" type="text/css" href="homeStyle.css">
+
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="blog-post">
+
+			<h1>My first blog post lul</h1>
+
+			<p class="date">Oct,7 2020</p>
+
+			<h2>This is my first blog post</h2>
+			<p class="main-text">
+				Far <strong>far</strong> away, <strong>behind</strong> the word
+				mountains, <em>far</em> from the countries <em>Vokalia</em> and <em>Consonantia</em>,
+				there live the <u>blind texts</u>. <br> Separated they live in
+				Bookmarksgrove right at the coast of the Semantics, a large language
+				ocean. A small river named Duden flows by their place and supplies
+				it with the necessary regelialia.
+			</p>
+
+
+
+			<a href="https://www.youtube.com/" target="_blank">Link to
+				YouTube</a> <a href="html5 image.png" target="_blank">HTML Logo</a>
+
+			<h4>HTML is ok</h4>
+
+			<p class="main-text">A wonderful serenity has taken possession of
+				my entire soul, like these sweet mornings of spring which I enjoy
+				with my whole heart. I am alone, and feel the charm of existence in
+				this spot, which was created for the bliss of souls like mine.</p>
+
+			<img src="html5 image.png" alt="The HTML5 logo.">
+		</div>
+
+		<div class="other-posts">
+
+			<div class="other">First other blog post</div>
+
+			<div class="other">Second blog post</div>
+
+			<div class="other">Third blog post</div>
+
+
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="author-box">
+
+			<img src="blank profile pic.png" alt="The author photo.">
+			<p class="author-text">Vmoney</p>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<p>
+			"!DOCTYPE html" in very begining before html headder. <br>
+			<br> "html" encloses whole page. <br>
+			<br> "head" un displayed meta data, aka tab of browser. <br>
+			<br> "title" is title. <br>
+			<br> "body" is main components. <br>
+			<br> "p" for paragraph sections. <br>
+			<br> "h1...h7" for headders lower number larger headder. <br>
+			<br> "br" for line breaks. <br>
+			<br> "strong" for bold, "em" for italics, "u" for underline. <br>
+			<br> "img src = "file_name" alt = "text if there is an error
+			with image"" to place image. <br>
+			<br> "a href = "URL" target = "_blank"" <strong>a</strong> for
+			anchor (beginning of hypertext link) <strong>href</strong> which
+			specifies a location <strong>target </strong> is how it opens the
+			page (replaces current page by default) >what to click to go to link
+			<!-- < -->
+			. Then close "/a". <br>
+			<br> "link rel = "stylesheet" type = "test/css" href =
+			"style.css"" link our css style to our html file. <br>
+			<br> In .css text file <strong>tags</strong> can have their
+			styles changes. Examples are font-color: "color", font-familt:: "font
+			style", etc. Multiple can be combined eg. h1, h2 { ... }. <br>
+			<br> when making tags e.g. "p" for paragraph sections it is good
+			practice to name them as a class i.e. "p class= "name_of_class" so
+			you can easily manipulate in css file. In css file use
+			.name_of_class{ ... }. id can also be used but is bad practice and in
+			css file its .name_of_id { ... }. <br>
+			<br> use "* { margin: 0; padding: 0; box-sizing: border-box; }"
+			to start with a 0 border baseline and then edit the values
+			induvidually. <br>
+			<br> "div" stands for divde to section out the page into boxes.
+			<br>
+			<br> "margin-left: auto; margin-right: auto;" makes both margins
+			even with the container size. <br>
+			<br> In the div classes width %, float for positioning,
+			.clearfix:after {content: ""; display: table;clear: both;} so next
+			div box isnt affected by floats. "margins = 20px auto 0 auto;" used
+			for spacing. padding also used to space boxes. and "border = 1px
+			solid rgb" for lines. <br>
+			<br> .author-box img { ... } makes all img inside that div box
+			follow that css file style. <br>
+			<br> set parent div to relative and a child to absoluto to get
+			things where you want them. <br>
+			<br> position: absolute; width: 1550px; top: 50%; left: 50%;
+			transform: translate(-50%, -50%); to get a box centered. <br>
+			<br> background-size: cover; background-position: center;
+			height: 100vh; for full background image to cover webpage. <br>
+			<br> background-image: linear-gradient(color 1, color 2),
+			url(image_destination); to put a "filter" on background. <br>
+			<br> inline an element to inline block allows for padding and
+			margins, e.g. inline element such as "a" can be changed to an inline
+			block. <br>
+			<br> btn:link "link" means pre visited, and .btn:visited
+			"visited" means clicked. <br>
+			<br> .btn:hover and .btn:active for hovered and clicked. <br>
+			<br> When making links to go to other sites use "ul" unsorted
+			list which is a rel that we downloaded and href to for lists, and
+			inside make seperate "li" elements with "a href" elements inside. It
+			goes ul>li>a href. <br> Inside cascading lists you use one "ul"
+			class name then just type the element after in order to edit the
+			element. E.g .main-nav {...} .main-nav li {...} .main-nav li a:link
+			{...}. <br>
+			<br>
+			<!-- Add section element <section class = "class_name"> </section>  -->
+			<br>
+			<br> div class "col span-x-to-y" uses imported grid to organize
+			and space the columns evenly. <br>
+			<br> Used icons by importing them with a script right before
+			body closing(may be slow).
+			<!--  <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script> -->
+			<br> You can make a class = "icon-class" when making the icon
+			element to use an dedit in .css file later. <br>
+			<br> To add a line graphic define it with "element:after", and
+			draw it out with attributes such as; <br> display: block; <br>
+			height: 2px; <br> background-color: color; <br> content: "
+			"; Lets it be visible, if not there the line would not show, when you
+			put something the letter apper below <br> width: 100px; <br>
+			margin: 0px auto; <br> margin-top: 30px; or margin: 30 auto 0
+			auto <br>
+			<br> making a paragraph ceneterd and at specific width of page,
+			in css .p_class_name {line-height: 145%; width: 70%; margin-left:
+			15%; } Left margin is half of remaining width. <br>
+			<br>
+
+
+		</p>
+
+	</div>
+
+</body>
+
+</html>
